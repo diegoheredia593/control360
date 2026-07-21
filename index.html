@@ -6,6 +6,8 @@
 <title>ControlD360 — Producción integral de eventos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/logo.png">
 <style>
   :root{
     --bg:#0b090d;
@@ -94,18 +96,13 @@
   }
   header .wrap{display:flex; align-items:center; justify-content:space-between;}
   .logo{display:flex; align-items:center; gap:12px;}
-  .logo-mark{
-    font-family:'Cormorant Garamond', serif;
-    font-size:14px;
-    letter-spacing:-0.02em;
-    color:var(--gold);
-    border:1px solid var(--line);
-    width:44px; height:44px;
-    display:flex; align-items:center; justify-content:center;
-    border-radius:50%;
+  .logo img{ display:block; height:38px; width:auto; transition:opacity .3s ease; }
+  .logo:hover img{ opacity:0.85; }
+  footer .logo img{ height:26px; width:auto; }
+  footer .logo-icon{
+    width:30px; height:30px; border-radius:50%; object-fit:cover;
+    border:1px solid var(--line); padding:4px; background:var(--bg-alt);
   }
-  .logo-text{font-size:13px; letter-spacing:0.3em; text-transform:uppercase; color:var(--white);}
-  .logo-text span{color:var(--gold);}
   .nav-cta{
     font-size:13px; letter-spacing:0.08em; font-weight:600;
     border:1px solid var(--gold); color:var(--gold);
@@ -270,6 +267,8 @@
     padding-top:40px; border-top:1px solid var(--line);
   }
   .partner{ text-align:left; }
+  .partner img{ height:34px; width:auto; max-width:120px; object-fit:contain; object-position:left; filter:grayscale(1) brightness(1.6); opacity:0.85; transition:filter .3s ease, opacity .3s ease; }
+  .partner:hover img{ filter:none; opacity:1; }
   .partner .pname{
     font-family:'Cormorant Garamond', serif; font-size:26px; color:var(--white); font-style:italic;
   }
@@ -278,26 +277,32 @@
   /* ---------- gallery ---------- */
   .gallery{ padding:100px 0 140px; }
   .gallery-grid{
-    display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-template-rows:180px 180px;
+    gap:14px; margin-top:20px;
   }
   .tile{
-    aspect-ratio:4/3; border-radius:3px; position:relative; overflow:hidden;
-    display:flex; align-items:flex-end; padding:20px;
+    border-radius:4px; position:relative; overflow:hidden;
     border:1px solid var(--line);
+    background:linear-gradient(160deg, var(--purple-deep), var(--bg-alt2));
   }
-  .tile span{
-    font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--white); font-weight:600;
-    position:relative; z-index:2;
+  .tile img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; transition:transform .6s cubic-bezier(.2,.7,.2,1), filter .5s ease;
+    filter:saturate(1.05) contrast(1.02);
   }
+  .tile:hover img{ transform:scale(1.07); }
   .tile::after{
-    content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.65) 100%);
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(11,9,13,0) 55%, rgba(11,9,13,0.55) 100%);
+    box-shadow:inset 0 0 0 1px rgba(205,164,76,0.08);
+    pointer-events:none;
   }
-  .tile.t1{ background:linear-gradient(135deg, #3b1878, #cda44c33); }
-  .tile.t2{ background:linear-gradient(135deg, #5b21b6, #1c1524); }
-  .tile.t3{ background:linear-gradient(135deg, #cda44c55, #2b1050); }
-  .tile.t4{ background:linear-gradient(135deg, #1c1524, #8b5cf655); }
-  .tile.t5{ background:linear-gradient(135deg, #cda44c33, #5b21b6); }
-  .tile.t6{ background:linear-gradient(135deg, #2b1050, #cda44c44); }
+  .tile.t1{ grid-column:span 2; grid-row:span 2; }
+  .tile.t2{ grid-column:span 2; grid-row:span 1; }
+  .tile.t3{ grid-column:span 1; grid-row:span 1; }
+  .tile.t4{ grid-column:span 1; grid-row:span 1; }
   .closing-line{
     text-align:center; margin-top:60px; font-family:'Cormorant Garamond', serif;
     font-style:italic; font-size:clamp(20px,2.5vw,28px); color:var(--gold-bright);
@@ -310,13 +315,25 @@
     background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(91,33,182,0.35), transparent 70%), var(--bg);
     border-top:1px solid var(--line);
   }
-  .cta-grid{ display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:start; }
+  .cta-grid{ display:grid; grid-template-columns:1fr 280px 1fr; gap:36px; align-items:center; }
   .cta-final h2{ font-size:clamp(32px,4vw,46px); max-width:460px; }
   .cta-final p.lead{ color:var(--muted); margin-top:20px; max-width:420px; }
   .contact-card{ margin-top:34px; }
   .contact-card .name{ font-size:20px; color:var(--white); font-weight:700; }
   .contact-card .role{ font-size:13px; color:var(--gold); letter-spacing:0.08em; text-transform:uppercase; margin-top:2px;}
   .contact-card .phone{ font-size:15px; color:var(--muted); margin-top:10px; }
+  .cta-portrait{ position:relative; display:flex; align-items:flex-end; justify-content:center; height:100%; }
+  .cta-portrait::before{
+    content:""; position:absolute; left:50%; top:14%; width:230px; height:230px;
+    transform:translateX(-50%);
+    background:radial-gradient(circle, rgba(139,92,246,0.4), rgba(205,164,76,0.12) 55%, transparent 75%);
+    filter:blur(18px); z-index:0;
+  }
+  .cta-portrait img{
+    position:relative; z-index:1;
+    width:100%; max-width:270px; height:auto;
+    filter:drop-shadow(0 26px 30px rgba(0,0,0,0.55));
+  }
 
   form{
     background:var(--bg-alt);
@@ -355,16 +372,26 @@
   /* ---------- responsive ---------- */
   @media (max-width: 860px){
     .process-grid, .cta-grid{ grid-template-columns:1fr; }
+    .cta-portrait{ order:2; margin:10px 0 0; }
+    .cta-portrait img{ max-width:200px; }
+    .cta-grid form{ order:3; }
     .service-grid{ grid-template-columns:1fr; }
     .logistics-grid{ grid-template-columns:repeat(2, 1fr); }
-    .gallery-grid{ grid-template-columns:repeat(2, 1fr); }
+    .gallery-grid{ grid-template-columns:repeat(2, 1fr); grid-template-rows:200px 200px 200px; }
+    .tile.t1{ grid-column:span 2; grid-row:span 1; }
+    .tile.t2{ grid-column:span 2; grid-row:span 1; }
+    .tile.t3{ grid-column:span 1; }
+    .tile.t4{ grid-column:span 1; }
     .stat-strip{ flex-direction:column; }
     .stat{ border-right:none; border-bottom:1px solid var(--line); }
     .stat:last-child{ border-bottom:none; }
     .partners-row{ justify-content:flex-start; }
   }
   @media (max-width: 560px){
-    .logistics-grid, .gallery-grid{ grid-template-columns:1fr; }
+    .logistics-grid{ grid-template-columns:1fr; }
+    .gallery-grid{ grid-template-columns:1fr; grid-template-rows:none; }
+    .tile{ aspect-ratio:4/3; position:relative; }
+    .tile.t1, .tile.t2, .tile.t3, .tile.t4{ grid-column:span 1; grid-row:auto; }
     .wrap{ padding:0 20px; }
   }
   @media (prefers-reduced-motion: reduce){
@@ -380,10 +407,9 @@
 
 <header id="siteHeader">
   <div class="wrap">
-    <div class="logo">
-      <div class="logo-mark">C360</div>
-      <div class="logo-text">CONTROL<span>D360</span></div>
-    </div>
+    <a class="logo" href="#" aria-label="ControlD360 — inicio">
+      <img src="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/logoandtext.png" alt="ControlD360">
+    </a>
     <a class="nav-cta" href="https://wa.me/593984633058?text=Hola%20Diana%2C%20quiero%20cotizar%20un%20evento" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
   </div>
 </header>
@@ -535,10 +561,10 @@
       <h2 class="spaced-title" style="font-size:28px;">Partners</h2>
     </div>
     <div class="partners-row reveal">
-      <div class="partner"><div class="pname">Motorola</div><div class="prole">Comunicación integral</div></div>
-      <div class="partner"><div class="pname">C&amp;G</div><div class="prole">Seguridad privada</div></div>
-      <div class="partner"><div class="pname">RB</div><div class="prole">Riesgos y emergencias</div></div>
-      <div class="partner"><div class="pname">Setrain</div><div class="prole">Servicios de limpieza</div></div>
+      <div class="partner"><img src="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/logomotorola.png" alt="Motorola" loading="lazy"><div class="prole">Comunicación integral</div></div>
+      <div class="partner"><img src="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/logoseguridad.png" alt="Seguridad privada" loading="lazy"><div class="prole">Seguridad privada</div></div>
+      <div class="partner"><img src="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/logoriesgosyemergencias.png" alt="Riesgos y emergencias" loading="lazy"><div class="prole">Riesgos y emergencias</div></div>
+      <div class="partner"><img src="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/logosetrain.png" alt="Setrain" loading="lazy"><div class="prole">Servicios de limpieza</div></div>
     </div>
   </div>
 </section>
@@ -551,12 +577,10 @@
       <h2 class="spaced-title">Galería de eventos</h2>
     </div>
     <div class="gallery-grid reveal">
-      <div class="tile t1"><span>Corporativo</span></div>
-      <div class="tile t2"><span>Deportivo</span></div>
-      <div class="tile t3"><span>Concierto</span></div>
-      <div class="tile t4"><span>Cultural</span></div>
-      <div class="tile t5"><span>Lanzamiento</span></div>
-      <div class="tile t6"><span>Seminario · Grado</span></div>
+      <div class="tile t1"><img src="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/group.jpeg" alt="Evento producido por ControlD360" loading="lazy"></div>
+      <div class="tile t2"><img src="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/work.jpeg" alt="Equipo de ControlD360 en producción" loading="lazy"></div>
+      <div class="tile t3"><img src="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/presenter.jpeg" alt="Presentador en evento de ControlD360" loading="lazy"></div>
+      <div class="tile t4"><img src="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/station.jpeg" alt="Estación de producción de ControlD360" loading="lazy"></div>
     </div>
     <p class="closing-line reveal">"Hay un gran evento esperándote. Déjanos hacerlo realidad para que tú solo disfrutes el resultado."</p>
   </div>
@@ -582,6 +606,9 @@
         </div>
       </div>
 
+      <div class="cta-portrait reveal">
+        <img src="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/diana.webp" alt="Diana Macías, coordinadora de eventos de ControlD360">
+      </div>
       <form id="leadForm" class="reveal">
         <div class="field">
           <label for="fname">Nombre</label>
@@ -616,8 +643,8 @@
 <footer>
   <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
     <div class="logo">
-      <div class="logo-mark" style="width:34px;height:34px;font-size:11px;">C360</div>
-      <div class="logo-text" style="font-size:11px;">CONTROL<span>D360</span></div>
+      <img class="logo-icon" src="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/logo.png" alt="">
+      <img src="https://cdn.jsdelivr.net/gh/diegoheredia593/assets/logotext.png" alt="ControlD360">
     </div>
     <div class="fine">© 2026 ControlD360 · Diana Macías · (+593) 98 463 3058</div>
   </div>
